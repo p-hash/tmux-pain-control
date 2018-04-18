@@ -10,6 +10,10 @@ copied them here.
 
 Tested and working on Linux, OSX and Cygwin.
 
+This plugin is compatible with [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator).
+Install it as vim plugin to use same keys for switch between vim splits. 
+Other features like resize will affect only tmux panes.
+
 ### Bindings
 
 Notice most of the bindings emulate vim cursor movements.

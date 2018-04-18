@@ -5,6 +5,8 @@
 - override default split window key bindings
 - added "@new_window_path" to allow disabling using the panes current path as
   the new windows starting path
+- added vim-aware navigation for compatibility with
+  [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
 
 ### v1.0.0, 2014-08-30
 - update readme to reflect github organization change

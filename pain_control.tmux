@@ -3,6 +3,9 @@
 default_pane_resize="5"
 default_new_window_path="true"
 
+is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+
 # tmux show-option "q" (quiet) flag does not set return value to 1, even though
 # the option does not exist. This function patches that.
 get_tmux_option() {
@@ -17,14 +20,14 @@ get_tmux_option() {
 }
 
 pane_navigation_bindings() {
-	tmux bind-key h   select-pane -L
-	tmux bind-key C-h select-pane -L
-	tmux bind-key j   select-pane -D
-	tmux bind-key C-j select-pane -D
-	tmux bind-key k   select-pane -U
-	tmux bind-key C-k select-pane -U
-	tmux bind-key l   select-pane -R
-	tmux bind-key C-l select-pane -R
+	tmux bind-key h   if-shell "$is_vim" "send-keys C-h" "select-pane -L"
+	tmux bind-key C-h if-shell "$is_vim" "send-keys C-h" "select-pane -L"
+	tmux bind-key j   if-shell "$is_vim" "send-keys C-j" "select-pane -D"
+	tmux bind-key C-j if-shell "$is_vim" "send-keys C-j" "select-pane -D"
+	tmux bind-key k   if-shell "$is_vim" "send-keys C-k" "select-pane -U"
+	tmux bind-key C-k if-shell "$is_vim" "send-keys C-k" "select-pane -U"
+	tmux bind-key l   if-shell "$is_vim" "send-keys C-l" "select-pane -R"
+	tmux bind-key C-l if-shell "$is_vim" "send-keys C-l" "select-pane -R"
 }
 
 window_move_bindings() {
